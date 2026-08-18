@@ -1,0 +1,23 @@
+[
+  {
+    "model": "us.anthropic.claude-sonnet-4-6",
+    "latency_s": 4.94,
+    "input_tokens": 22,
+    "output_tokens": 84,
+    "estimated_cost_usd": 0.001326
+  },
+  {
+    "model": "meta.llama3-8b-instruct-v1:0",
+    "latency_s": 3.29,
+    "input_tokens": 14,
+    "output_tokens": 300,
+    "estimated_cost_usd": 0.000184
+  },
+  {
+    "model": "amazon.nova-lite-v1:0",
+    "latency_s": 1.02,
+    "input_tokens": 13,
+    "output_tokens": 53,
+    "estimated_cost_usd": 3.6e-05
+  }
+]

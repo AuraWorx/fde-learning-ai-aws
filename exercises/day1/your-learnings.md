@@ -1,6 +1,7 @@
 # Day 1 Exercises — LLM Fundamentals
 
 ## Instructions
+
 Complete all exercises below. Write your answers and observations directly in this file.
 
 ---
@@ -15,9 +16,9 @@ Run `python day1/llm_basics.py` and answer:
 
 **Your answer:**
 
-1. 
-2. 
-3. 
+1. the sample tokens produce 10 tokens.['Art', 'ificial', 'Ġintelligence', 'Ġis', 'Ġtransforming', 'Ġhow', 'Ġwe', 'Ġbuild', 'Ġsoftware', '.']
+2. i was suprised by the punctuation("."), because i knew that words can be split into multiple tokens during tokenisation but i didnt know that punctuation also counted as a token.
+3. Here token count is matters because bedrock pricing is based on the numbers of tokens used instead words thats why, more tokens more cost.
 
 ---
 
@@ -30,8 +31,8 @@ Compare outputs at temperature 0.1 vs 1.0:
 
 **Your answer:**
 
-1. 
-2. 
+1. Temperature 0.1 is produced more consistent output because the lower temparature makes the model to choose the higher pobability tokens and maintain consistency.
+2. For customer support chatbot i would use lower temperature such as 0.1, because it gives more consistent responses and make the model more likely choose to higher probability tokens. For creative writing i would choose higher temperature such as 1.0, because it completely opposite it lower temperature like it makes the model choose to more different and creative tokens includes lower probability tokens.
 
 ---
 
@@ -45,9 +46,9 @@ Run `python day1/bedrock_playground.py`:
 
 **Your answer:**
 
-1. 
-2. 
-3. 
+1. Nova Lite was the fastest at 1.02 seconds, and Claude Sonnet 4.6 was the slowest at 4.94 seconds.
+2. Claude Sonnet 4.6 gave the best explanation of attention because its response was clear and detailed while still staying within the two-sentence requirement.
+3. Nova Lite was the cheapest at $0.000036, while Claude Sonnet 4.6 was the most expensive at $0.001326. The cost difference was $0.00129 for the same prompt.
 
 ---
 
@@ -61,9 +62,10 @@ Run `python day1/prompt_patterns.py` and inspect `prompt_results.json`:
 
 **Your answer:**
 
-1. 
-2. 
-3. 
+1. zero-shot and few-shot give the most accurate answers, bacause both correctly answered "paris".
+2. I use this chain-of-thought in the FDE deployment when the task requires multiple steps of reasoning.
+3. What is the capital city of France?
+   Answer with only the city name and no additional text.
 
 ---
 
@@ -76,5 +78,5 @@ Answer these 2 sentences before you close your laptop:
 
 **Your reflection:**
 
-1. 
-2. 
+1. I was surprised that model changes how it chooses the tokens based on the temperature value.
+2. I would use Claude for complex tasks and coding purposes, Llama for flexible and cost-effective solutions, and Titan for AWS-native AI tasks such as text generation or embeddings.
