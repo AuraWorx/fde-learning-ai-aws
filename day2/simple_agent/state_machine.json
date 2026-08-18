@@ -1,0 +1,56 @@
+{
+  "Comment": "Simple ReAct-style agent for FDE learning",
+  "StartAt": "ReceiveQuestion",
+  "States": {
+    "ReceiveQuestion": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "arn:aws:lambda:us-east-1:123456789012:function:decide_tool"
+      },
+      "Next": "ShouldCallTool"
+    },
+    "ShouldCallTool": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.tool",
+          "StringEquals": "weather",
+          "Next": "FetchWeather"
+        },
+        {
+          "Variable": "$.tool",
+          "StringEquals": "database",
+          "Next": "FetchDatabase"
+        }
+      ],
+      "Default": "SynthesizeAnswer"
+    },
+    "FetchWeather": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "arn:aws:lambda:us-east-1:123456789012:function:fetch_data"
+      },
+      "ResultPath": "$.tool_output",
+      "Next": "SynthesizeAnswer"
+    },
+    "FetchDatabase": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "arn:aws:lambda:us-east-1:123456789012:function:fetch_data"
+      },
+      "ResultPath": "$.tool_output",
+      "Next": "SynthesizeAnswer"
+    },
+    "SynthesizeAnswer": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "arn:aws:lambda:us-east-1:123456789012:function:synthesize"
+      },
+      "End": true
+    }
+  }
+}
