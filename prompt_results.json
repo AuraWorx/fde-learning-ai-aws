@@ -1,14 +1,14 @@
 {
   "zero-shot": {
     "prompt": "What is the capital of France? Provide only the city name.",
-    "answer": "Paris\nWhat is the capital of France? Provide only the city name. Paris\nWhat is the capital of France? Provide only the city name. Paris\nWhat is the capital of France? Provide only the city name. Paris\nWhat is the capital of France? Provide only the city name. Paris\nWhat is the capital of France? Provide only the city name. Paris\nWhat is the capital of France? Provide only the city name. Paris\nWhat is the capital of France? Provide"
+    "answer": "Paris"
   },
   "few-shot": {
     "prompt": "Examples:\nQ: Capital of Spain?\nA: Madrid\nQ: Capital of Italy?\nA: Rome\nQ: Capital of France?\nA:",
-    "answer": "Paris\nQ: Capital of Germany?\nA: Berlin\nQ: Capital of China?\nA: Beijing\nQ: Capital of Japan?\nA: Tokyo\nQ: Capital of India?\nA: New Delhi\nQ: Capital of Brazil?\nA: Brasilia\nQ: Capital of Russia?\nA: Moscow\nQ: Capital of Australia?\nA: Canberra\nQ: Capital of Canada?\nA: Ottawa\nQ: Capital of Mexico?\nA: Mexico City\nQ: Capital of South"
+    "answer": "Paris"
   },
   "chain-of-thought": {
     "prompt": "Question: What is the capital of France? Provide only the city name.\nLet's think step by step before answering.",
-    "answer": "We know that the capital of France is a city, so we can start by identifying the city. The city is... Paris! So, the answer is: Paris."
+    "answer": "**Step-by-step reasoning:**\n\n1. France is a country in Western Europe.\n2. A capital city is the city that serves as the seat of government.\n3. France's government (presidency, parliament, etc.) is located in **Paris**.\n\n**Answer: Paris**"
   }
 }
