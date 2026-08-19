@@ -62,8 +62,8 @@ Run `python day1/prompt_patterns.py` and inspect `prompt_results.json`:
 
 **Your answer:**
 
-1. zero-shot and few-shot give the most accurate answers, bacause both correctly answered "paris".
-2. I use this chain-of-thought in the FDE deployment when the task requires multiple steps of reasoning.
+1. zero-shot and few-shot gave the most accurate answers, bacause both correctly answered "paris".
+2. I would use chain-of-thought for tasks that require multiple steps of reasoning, where the model needs to work through the problem before giving the final answer.
 3. What is the capital city of France?
    Answer with only the city name and no additional text.
 
@@ -74,9 +74,9 @@ Run `python day1/prompt_patterns.py` and inspect `prompt_results.json`:
 Answer these 2 sentences before you close your laptop:
 
 1. What surprised you about how models generate text?
-2. When would you use Claude vs Llama vs Titan in an AWS deployment?
+2. When would you use Claude vs Llama vs Nova Lite in an AWS deployment?
 
 **Your reflection:**
 
 1. I was surprised that model changes how it chooses the tokens based on the temperature value.
-2. I would use Claude for complex tasks and coding purposes, Llama for flexible and cost-effective solutions, and Titan for AWS-native AI tasks such as text generation or embeddings.
+2. I would use Claude for complex tasks and coding purposes, Llama for flexible and cost-effective solutions, and Nova Lite for fast and cost-effective AWS-native AI tasks.
