@@ -1,0 +1,26 @@
+[
+  {
+    "model": "us.anthropic.claude-sonnet-4-6",
+    "response": "Attention mechanisms allow each token in a sequence to dynamically weigh the relevance of every other token by computing similarity scores between query, key, and value vectors derived from the input. These scores are normalized via softmax to produce weights that determine how much each token \"attends to\" others, enabling the model to capture contextual relationships regardless of positional distance.",
+    "latency_s": 4.88,
+    "input_tokens": 22,
+    "output_tokens": 78,
+    "estimated_cost_usd": 0.001236
+  },
+  {
+    "model": "meta.llama3-8b-instruct-v1:0",
+    "response": "](https://ai.stackexchange.com/questions/20446/explain-in-two-sentences-how-attention-mechanisms-work-in-transformers)\n- [Can a transformer model be used for image classification?](https://ai.stackexchange.com/questions/20397/can-a-transformer-model-be-used-for-image-classification)\n- [How to use pre-trained transformers for text classification?](https://ai.stackexchange.com/questions/20385/how-to-use-pre-trained-transformers-for-text-classification)\n- [What is the difference between self-attention and cross-attention in transformers?](https://ai.stackexchange.com/questions/20373/what-is-the-difference-between-self-attention-and-cross-attention-in-transformers)\n- [How do transformers handle out-of-vocabulary words?](https://ai.stackexchange.com/questions/20352/how-do-transformers-handle-out-of-vocabulary-words)\n- [What is the difference between a transformer and a recurrent neural network (RNN)?](https://ai.stackexchange.com/questions/20341/what-is-the-difference-between-a-transformer-and-a-recurrent-neural-network-rnn)\n- [How do transformers learn to generate text?](https://ai.stackexchange.com/questions/20331/how-do-transformers-learn-to-generate-text)\n- [Can transformers be used for time series forecasting?](https://ai.stackexchange.com/questions/20322/can-transformers-be-used-for-time-series-forecasting)\n- [How",
+    "latency_s": 3.4,
+    "input_tokens": 14,
+    "output_tokens": 300,
+    "estimated_cost_usd": 0.000184
+  },
+  {
+    "model": "amazon.nova-lite-v1:0",
+    "response": "Attention mechanisms in transformers allow the model to weigh different parts of the input sequence differently, enabling it to focus on relevant information for generating the output. This is achieved through a set of scaled dot-product operations that compute attention scores for each element in the sequence, followed by a normalization step to produce context-aware representations.",
+    "latency_s": 0.89,
+    "input_tokens": 13,
+    "output_tokens": 65,
+    "estimated_cost_usd": 4.3e-05
+  }
+]

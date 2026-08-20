@@ -1,6 +1,7 @@
 # Day 2 Exercises — AWS AI Engineering
 
 ## Instructions
+
 Complete all exercises below. Write your answers and observations directly in this file.
 
 ---
@@ -21,9 +22,12 @@ curl -X POST https://<api-id>.execute-api.us-east-1.amazonaws.com/prod/chat \
 
 **Your answer:**
 
-1. 
-2. 
-3. 
+1. The cold start latency on the first invocation was 2.49 seconds.
+2. The latency on the second invocation was 1.57 seconds. It was faster because second time using the existing lambda execution environment.
+3. Three techniques to reduce cold starts in production are:
+   Provisioned Concurrency — keep Lambda instances ready.
+   Smaller packages — reduce dependencies so Lambda starts faster.
+   Less startup work — keep initialization code minimal.
 
 ---
 
@@ -37,9 +41,9 @@ Run `python day2/rag_lite.py`:
 
 **Your answer:**
 
-1. 
-2. 
-3. 
+1. I used a small chunk size with some overlap. This helps break the document into smaller pieces while keeping some information connected between the chunks.
+2. Yes, they were relevant because they contained information about AI, language models, and RAG. However, my document was only split into 1 chunk, so the top 3 results were very similar.
+3. I would use a proper vector database instead of local FAISS. I would also try a better embedding model and improve the way the document is split into chunks.
 
 ---
 
@@ -53,9 +57,15 @@ Deploy the Step Functions state machine and run a test:
 
 **Your answer:**
 
-1. 
-2. 
-3. 
+1. When the user asks “What is the weather in Paris?”, the question first goes to the decide_tool Lambda. Claude identifies that the weather tool is needed. Step Functions then calls fetch_data with the weather tool, and finally sends the question and weather result to the synthesize Lambda to generate the final answer.
+2. If the LLM returns an unknown tool name, Step Functions will not match it with weather or database, so it goes to the default path. The workflow will then call synthesize with that unknown tool name, instead of calling fetch_data for it.
+   the JSON looks like:
+   {
+   "question": "What is the weather in Paris?",
+   "tool": "none",
+   "reason": "Could not parse LLM output"
+   }
+3. I would add retry logic in Step Functions so failed Lambda calls can be retried automatically. For human approval, I would add an approval step where a person can review the tool decision and approve or reject it before the agent continues.
 
 ---
 
@@ -67,9 +77,29 @@ Deploy the Step Functions state machine and run a test:
 
 **Your answer:**
 
-1. 
-2. 
-3. 
+1. Completed cost_tracker.py to query CloudWatch Logs Insights for Bedrock request logs, extract model and token usage, and calculate the estimated daily Bedrock cost.
+2. === Cost Tracker: 2026-08-20 ===
+
+Reading: /aws/lambda/AIServerlessStack-ChatFunction3D7C447E-EWnNsNSeL1IS
+Reading: /aws/lambda/AIServerlessStack-ChatFunction3D7C447E-FW97qwE3Ox9S
+Reading: /aws/lambda/AIServerlessStack-SummarizeFunction10D6AD57-GMv1BmrtTZtv
+
+=== Daily Cost Estimate ===
+{
+"date": "2026-08-20",
+"total_invocations": 1,
+"total_input_tokens": 15,
+"total_output_tokens": 31,
+"estimated_cost_usd": 0.00051,
+"by_model": {
+"us.anthropic.claude-sonnet-4-6": {
+"invocations": 1,
+"input_tokens": 15,
+"output_tokens": 31,
+"cost_usd": 0.00051
+}
+}
+} 3. If 10,000 requests were served per day with the same token usage, the estimated monthly Bedrock cost would be approximately $153/month (assuming 30 days).
 
 ---
 
@@ -82,5 +112,5 @@ Answer these 2 sentences before you close your laptop:
 
 **Your reflection:**
 
-1. 
-2. 
+1. The main concern is that AI requests can take time, so we need to make sure Lambda doesn't time out.
+2. I would recommend API Gateway + Lambda + Bedrock, because it is serverless, scales automatically, and we don't have to manage servers ourselves.
