@@ -46,9 +46,9 @@ Run `python day1/bedrock_playground.py`:
 
 **Your answer:**
 
-1. Nova Lite was the fastest at 1.02 seconds, and Claude Sonnet 4.6 was the slowest at 4.94 seconds.
-2. Claude Sonnet 4.6 gave the best explanation of attention because its response was clear and detailed while still staying within the two-sentence requirement.
-3. Nova Lite was the cheapest at $0.000036, while Claude Sonnet 4.6 was the most expensive at $0.001326. The cost difference was $0.00129 for the same prompt.
+1. Nova Lite was the fastest at 0.89 seconds, and Claude Sonnet 4.6 was the slowest at 4.88 seconds.
+2. Claude Sonnet 4.6 gave the best explanation of attention because it clearly explained query, key, and value vectors, attention scores, softmax, and how the model captures contextual relationships. It also followed the two-sentence requirement.
+3. Nova Lite was the cheapest at $0.000043, while Claude Sonnet 4.6 was the most expensive at $0.001236. The cost difference was $0.001193 for the same prompt.
 
 ---
 
