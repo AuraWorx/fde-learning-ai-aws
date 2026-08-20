@@ -22,9 +22,12 @@ curl -X POST https://<api-id>.execute-api.us-east-1.amazonaws.com/prod/chat \
 
 **Your answer:**
 
-1.
-2.
-3.
+1.The cold start latency on the first invocation was 2.49 seconds.
+2.The latency on the second invocation was 1.57 seconds. It was faster because second time using the existing lambda execution environment.
+3.Three techniques to reduce cold starts in production are:
+Provisioned Concurrency — keep Lambda instances ready.
+Smaller packages — reduce dependencies so Lambda starts faster.
+Less startup work — keep initialization code minimal.
 
 ---
 
