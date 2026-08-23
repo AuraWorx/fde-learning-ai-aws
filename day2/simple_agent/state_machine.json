@@ -6,8 +6,14 @@
       "Type": "Task",
       "Resource": "arn:aws:states:::lambda:invoke",
       "Parameters": {
-        "FunctionName": "arn:aws:lambda:us-east-1:123456789012:function:decide_tool"
+        "FunctionName": "arn:aws:lambda:us-east-1:972553755953:function:decide_tool",
+        "Payload.$": "$"
       },
+    "ResultSelector": {
+    "question.$": "$.Payload.question",
+    "tool.$": "$.Payload.tool",
+    "reason.$": "$.Payload.reason"
+  },
       "Next": "ShouldCallTool"
     },
     "ShouldCallTool": {
@@ -30,7 +36,8 @@
       "Type": "Task",
       "Resource": "arn:aws:states:::lambda:invoke",
       "Parameters": {
-        "FunctionName": "arn:aws:lambda:us-east-1:123456789012:function:fetch_data"
+        "FunctionName": "arn:aws:lambda:us-east-1:972553755953:function:fetch_data",
+        "Payload.$": "$"
       },
       "ResultPath": "$.tool_output",
       "Next": "SynthesizeAnswer"
@@ -39,8 +46,12 @@
       "Type": "Task",
       "Resource": "arn:aws:states:::lambda:invoke",
       "Parameters": {
-        "FunctionName": "arn:aws:lambda:us-east-1:123456789012:function:fetch_data"
+        "FunctionName": "arn:aws:lambda:us-east-1:972553755953:function:fetch_data",
+        "Payload.$": "$"
       },
+        "ResultSelector": {
+    "tool_output.$": "$.Payload.tool_output"
+  },
       "ResultPath": "$.tool_output",
       "Next": "SynthesizeAnswer"
     },
@@ -48,7 +59,13 @@
       "Type": "Task",
       "Resource": "arn:aws:states:::lambda:invoke",
       "Parameters": {
-        "FunctionName": "arn:aws:lambda:us-east-1:123456789012:function:synthesize"
+        "FunctionName": "arn:aws:lambda:us-east-1:972553755953:function:synthesize",
+        "Payload.$": "$"
+      },
+      "ResultSelector": {
+        "question.$": "$.Payload.question",
+        "tool_used.$": "$.Payload.tool_used",
+        "answer.$": "$.Payload.answer"
       },
       "End": true
     }

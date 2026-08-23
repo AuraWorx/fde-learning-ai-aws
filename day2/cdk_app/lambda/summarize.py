@@ -3,11 +3,9 @@ import os
 import time
 import urllib.request
 import boto3
-from dotenv import load_dotenv
 
-load_dotenv()
 bedrock = boto3.client("bedrock-runtime", region_name=os.getenv("AWS_REGION", "us-east-1"))
-MODEL = os.getenv("BEDROCK_MODEL", "anthropic.claude-3-sonnet-20240229-v1:0")
+MODEL = os.getenv("BEDROCK_MODEL", "us.anthropic.claude-3-haiku-20240307-v1:0")
 
 def fetch_url(url):
     req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})

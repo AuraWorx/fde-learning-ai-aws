@@ -2,11 +2,9 @@ import json
 import os
 import time
 import boto3
-from dotenv import load_dotenv
 
-load_dotenv()
 bedrock = boto3.client("bedrock-runtime", region_name=os.getenv("AWS_REGION", "us-east-1"))
-MODEL = os.getenv("BEDROCK_MODEL", "anthropic.claude-3-sonnet-20240229-v1:0")
+MODEL = os.getenv("BEDROCK_MODEL", "us.anthropic.claude-3-haiku-20240307-v1:0")
 
 def handler(event, context):
     body = json.loads(event.get("body", "{}"))
@@ -20,8 +18,18 @@ def handler(event, context):
     response = bedrock.invoke_model(modelId=MODEL, body=json.dumps(payload))
     latency = time.time() - start
     result = json.loads(response["body"].read())
+    # print("result=",repr(result))
     reply = result["content"][0]["text"]
-    usage = response.get("usage", {})
+    # print("reply=", repr(reply))
+    usage = result.get("usage", {})
+    # print("usage=", repr(usage))
+    print(json.dumps({
+        "model": MODEL,
+        "input_tokens": usage.get("input_tokens"),
+        "output_tokens": usage.get("output_tokens"),
+        "latency_s": round(latency, 2)
+    }))
+
     return {
         "statusCode": 200,
         "headers": {"Content-Type": "application/json"},
@@ -29,6 +37,8 @@ def handler(event, context):
             "reply": reply,
             "latency_s": round(latency, 2),
             "model": MODEL,
-            "usage": usage
+            "usage": usage,
+            "input_token": usage.get("input_tokens"),
+            "outpur_tokens": usage.get("output_tokens")
         })
     }

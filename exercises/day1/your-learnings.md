@@ -47,7 +47,7 @@ Run `python day1/bedrock_playground.py`:
 
 1. Fastest: Nova-lite, Slowest: Llama3-8b-instruct
 2. Haiku 4.5 model gives the best explanation because it's answer is exactly two sentences with reasonable length, uses right wordings and doesn't go into too much technical details.
-3. 1.499s
+3. 1.499
 
 ---
 
@@ -63,7 +63,7 @@ Run `python day1/prompt_patterns.py` and inspect `prompt_results.json`:
 
 1. All three gave accurate answer 
 2. I apply chain-of-thoughts when there is a need to think step-by-step and analyze before making a decicion(accuracy).
-3. what is the capital of France?
+3. what is the capital(city only) of France?
 
 ---
 

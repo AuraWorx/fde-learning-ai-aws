@@ -18,13 +18,14 @@ def get_embedding(text):
     result = json.loads(response["body"].read())
     return result["embedding"]
 
-def chunk_text(text, chunk_size=512, overlap=0.1):
+def chunk_text(text, chunk_size=30, overlap=0.2):
     words = text.split()
     chunk_words = int(chunk_size / 4)
     step = int(chunk_words * (1 - overlap))
     chunks = []
     for i in range(0, len(words), step):
         chunk = " ".join(words[i:i+chunk_words])
+        _strip = chunk.strip()
         if chunk.strip():
             chunks.append(chunk)
     return chunks
@@ -52,14 +53,14 @@ def main():
     chunks = chunk_text(sample_doc)
     print(f"Chunked document into {len(chunks)} chunks")
     index, embeddings = build_index(chunks)
-    query = "How do RAG systems work?"
+    query = "What do RAG systems do?"
     top_chunks = retrieve(query, chunks, index, embeddings)
     print(f"\nTop chunks for query: '{query}'\n")
     for i, c in enumerate(top_chunks, 1):
         print(f"{i}. {c[:200]}...")
     context = "\n".join(top_chunks)
     prompt = f"Context:\n{context}\n\nQuestion: {query}\nAnswer:"
-    print(f"\n--- Final prompt sent to Claude ---\n{prompt[:400]}...")
+    print(f"\n--- Final prompt sent to Claude ---\n{prompt}...")
 
 if __name__ == "__main__":
     main()

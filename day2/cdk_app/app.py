@@ -1,11 +1,14 @@
+import os
 import aws_cdk as cdk
 from aws_cdk import (
     Stack,
     aws_lambda as _lambda,
     aws_apigateway as apigw,
-    aws_bedrock as bedrock,
+    aws_iam as iam,
 )
 from constructs import Construct
+
+LAMBDA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "lambda")
 
 class AIServerlessStack(Stack):
     def __init__(self, scope: Construct, construct_id: str, **kwargs):
@@ -15,11 +18,11 @@ class AIServerlessStack(Stack):
             self, "ChatFunction",
             runtime=_lambda.Runtime.PYTHON_3_11,
             handler="chat.handler",
-            code=_lambda.Code.from_asset("lambda"),
+            code=_lambda.Code.from_asset(LAMBDA_DIR),
             timeout=cdk.Duration.seconds(30),
-            environment={"BEDROCK_MODEL": "anthropic.claude-3-sonnet-20240229-v1:0"},
+            environment={"BEDROCK_MODEL": "us.anthropic.claude-haiku-4-5-20251001-v1:0"},
         )
-        chat_fn.add_to_role_policy(bedrock.PolicyStatement(
+        chat_fn.add_to_role_policy(iam.PolicyStatement(
             actions=["bedrock:InvokeModel", "bedrock:InvokeModelWithResponseStream"],
             resources=["*"]
         ))
@@ -28,11 +31,11 @@ class AIServerlessStack(Stack):
             self, "SummarizeFunction",
             runtime=_lambda.Runtime.PYTHON_3_11,
             handler="summarize.handler",
-            code=_lambda.Code.from_asset("lambda"),
+            code=_lambda.Code.from_asset(LAMBDA_DIR),
             timeout=cdk.Duration.seconds(60),
-            environment={"BEDROCK_MODEL": "anthropic.claude-3-sonnet-20240229-v1:0"},
+            environment={"BEDROCK_MODEL": "us.anthropic.claude-haiku-4-5-20251001-v1:0"},
         )
-        summarize_fn.add_to_role_policy(bedrock.PolicyStatement(
+        summarize_fn.add_to_role_policy(iam.PolicyStatement(
             actions=["bedrock:InvokeModel"],
             resources=["*"]
         ))
@@ -54,3 +57,4 @@ class AIServerlessStack(Stack):
 
 app = cdk.App()
 AIServerlessStack(app, "AIServerlessStack")
+app.synth()
