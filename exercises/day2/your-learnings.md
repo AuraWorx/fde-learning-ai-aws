@@ -85,7 +85,7 @@ Deploy the Step Functions state machine and run a test:
     }
   }
 }
-3. 
+3. 2,970
 
 ---
 
