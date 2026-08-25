@@ -1,0 +1,14 @@
+{
+  "zero-shot": {
+    "prompt": "What is the capital of France? Provide only the city name.",
+    "answer": "Paris"
+  },
+  "few-shot": {
+    "prompt": "Examples:\nQ: Capital of Spain?\nA: Madrid\nQ: Capital of Italy?\nA: Rome\nQ: Capital of France?\nA:",
+    "answer": "A: Paris"
+  },
+  "chain-of-thought": {
+    "prompt": "Question: What is the capital of France? Provide only the city name.\nLet's think step by step before answering.",
+    "answer": "Let me think through this:\n\nFrance is a country in Western Europe. The capital city is the largest city and seat of government.\n\n**Paris**"
+  }
+}

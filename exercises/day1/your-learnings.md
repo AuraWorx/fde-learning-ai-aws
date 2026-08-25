@@ -15,9 +15,9 @@ Run `python day1/llm_basics.py` and answer:
 
 **Your answer:**
 
-1. 
-2. 
-3. 
+1. 10 Tokens are produced by sample senetnce 
+2. I am suprised by having a token even for a character
+3. Because tokens are the basic units of work for any AI model. Specicifically, AWS Bedrock is purely billed based on total number of used tokens(Input/Output).
 
 ---
 
@@ -30,8 +30,8 @@ Compare outputs at temperature 0.1 vs 1.0:
 
 **Your answer:**
 
-1. 
-2. 
+1. I feel neither of the outputs are consistent, while comparing both outputs, 0.1 temperature is better in consistency. 
+2. I use temperatue 0.1 for customer support chatbot because the answers are more likely and short. On the otherhand, I will use temperature 1.0 for creative writing because of the broader perspectives and detailed answers.
 
 ---
 
@@ -45,9 +45,9 @@ Run `python day1/bedrock_playground.py`:
 
 **Your answer:**
 
-1. 
-2. 
-3. 
+1. Fastest: Nova-lite, Slowest: Llama3-8b-instruct
+2. Haiku 4.5 model gives the best explanation because it's answer is exactly two sentences with reasonable length, uses right wordings and doesn't go into too much technical details.
+3. 1.499
 
 ---
 
@@ -61,9 +61,9 @@ Run `python day1/prompt_patterns.py` and inspect `prompt_results.json`:
 
 **Your answer:**
 
-1. 
-2. 
-3. 
+1. All three gave accurate answer 
+2. I apply chain-of-thoughts when there is a need to think step-by-step and analyze before making a decicion(accuracy).
+3. what is the capital(city only) of France?
 
 ---
 
@@ -76,5 +76,5 @@ Answer these 2 sentences before you close your laptop:
 
 **Your reflection:**
 
-1. 
-2. 
+1. The attention step is the one that suprised me, because it is the process of understanding a prompt by weighing each vector aganist every other vector in the prompt.
+2. Real-time voice assistance embedded in a mobile app requires low latency with moderate reasoning, so I will use Nova Lite. Code generation assistant integrated into a developer's IDE require very high reasoning irrespective of cost, so I will use Hailu 4.5. Simple FAQ/knowledge-base retrieval bot will be fine with low speed, moderate reason and with less cost, so I prefer Llama 3-8b

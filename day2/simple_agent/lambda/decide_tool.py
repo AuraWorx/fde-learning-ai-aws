@@ -1,13 +1,16 @@
 import json
 import os
 import boto3
-from dotenv import load_dotenv
+import re
+# from dotenv import load_dotenv
 
-load_dotenv()
+# load_dotenv()
 bedrock = boto3.client("bedrock-runtime", region_name=os.getenv("AWS_REGION", "us-east-1"))
 
 def handler(event, context):
+    # print(repr(event))
     question = event.get("question", "")
+    # print(repr(question))
     prompt = f"""You are a routing agent. Decide which tool to use for this question.
 Available tools: weather, database.
 Question: {question}
@@ -17,9 +20,16 @@ Respond with JSON only: {{"tool": "weather" or "database", "reason": "..."}}"""
         "max_tokens": 100,
         "messages": [{"role": "user", "content": prompt}]
     }
-    response = bedrock.invoke_model(modelId="anthropic.claude-3-sonnet-20240229-v1:0", body=json.dumps(payload))
+    # print(repr(payload))
+    response = bedrock.invoke_model(modelId="us.anthropic.claude-haiku-4-5-20251001-v1:0", body=json.dumps(payload))
+    # print(repr(response))
     result = json.loads(response["body"].read())
-    text = result["content"][0]["text"]
+    # print(result)
+    md_text = result["content"][0]["text"]
+    match = re.search(r"\{.*\}", md_text, re.DOTALL)
+    if match:
+        text = match.group(0)
+    # print(repr(text))
     try:
         decision = json.loads(text)
     except json.JSONDecodeError:

@@ -22,7 +22,7 @@ def invoke_claude(prompt):
         "messages": [{"role": "user", "content": prompt}]
     }
     response = BEDROCK.invoke_model(
-        modelId="anthropic.claude-3-sonnet-20240229-v1:0",
+        modelId="us.anthropic.claude-haiku-4-5-20251001-v1:0",
         body=json.dumps(body)
     )
     result = json.loads(response["body"].read())
